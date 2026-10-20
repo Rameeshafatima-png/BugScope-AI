@@ -1,0 +1,21 @@
+order_id,customer_id,product,amount,status,delivery_date,refund_status
+ORD-1001,CUST-101,Wireless Headphones,75,delivered,2026-10-17,none
+ORD-1002,CUST-102,Wireless Headphones,120,refunded,2026-10-19,refunded
+ORD-1003,CUST-103,Wireless Headphones,350,refunded,2026-10-19,refunded
+ORD-1004,CUST-104,Wireless Headphones,40,delivered,2026-10-05,none
+ORD-1005,CUST-105,Wireless Headphones,95,refunded,2026-10-17,refunded
+ORD-1006,CUST-106,Wireless Headphones,75,delivered,2026-10-17,none
+ORD-1007,CUST-107,Wireless Headphones,120,delivered,2026-10-17,none
+ORD-1008,CUST-108,Wireless Headphones,350,delivered,2026-10-17,none
+ORD-1009,CUST-109,Wireless Headphones,40,delivered,2026-10-17,none
+ORD-1010,CUST-110,Wireless Headphones,95,delivered,2026-10-17,none
+ORD-1011,CUST-111,Wireless Headphones,75,delivered,2026-10-17,none
+ORD-1012,CUST-112,Wireless Headphones,120,delivered,2026-10-17,none
+ORD-1013,CUST-113,Wireless Headphones,350,delivered,2026-10-17,none
+ORD-1014,CUST-114,Wireless Headphones,40,delivered,2026-10-17,none
+ORD-1015,CUST-115,Wireless Headphones,95,delivered,2026-10-17,none
+ORD-1016,CUST-116,Wireless Headphones,75,delivered,2026-10-17,none
+ORD-1017,CUST-117,Wireless Headphones,120,delivered,2026-10-17,none
+ORD-1018,CUST-118,Wireless Headphones,350,delivered,2026-10-17,none
+ORD-1019,CUST-119,Wireless Headphones,40,delivered,2026-10-17,none
+ORD-1020,CUST-120,Wireless Headphones,95,delivered,2026-10-17,none

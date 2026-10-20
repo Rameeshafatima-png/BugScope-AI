@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Desk · Support Console</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">R</div>
+      <div>
+        <h1>Refund Desk</h1>
+        <p class="tagline">Customer support console · LangGraph</p>
+      </div>
+    </div>
+    <div class="status" id="serverStatus"><span class="dot"></span><span>Checking…</span></div>
+  </header>
+
+  <main class="page">
+    <section class="stats" aria-label="Overview">
+      <article class="stat">
+        <span class="stat-label">Orders</span>
+        <strong class="stat-value" id="statTotal">—</strong>
+      </article>
+      <article class="stat">
+        <span class="stat-label">Refunded</span>
+        <strong class="stat-value" id="statRefunded">—</strong>
+      </article>
+      <article class="stat">
+        <span class="stat-label">Needs review</span>
+        <strong class="stat-value" id="statReview">—</strong>
+        <span class="stat-note">Delivered, over $100</span>
+      </article>
+      <article class="stat">
+        <span class="stat-label">Open under $100</span>
+        <strong class="stat-value" id="statEligible">—</strong>
+        <span class="stat-note">Delivered, not refunded</span>
+      </article>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <header class="card-head">
+          <div>
+            <h2>New request</h2>
+            <p>Describe the customer's request. Press Ctrl+Enter to send.</p>
+          </div>
+          <button class="btn ghost" id="newThreadBtn" type="button">New thread</button>
+        </header>
+
+        <form id="supportForm" autocomplete="off">
+          <label for="message">Customer message</label>
+          <textarea id="message" rows="4" placeholder="e.g. Please refund ORD-1001" required></textarea>
+
+          <p class="hint">Quick scenarios</p>
+          <div class="chips">
+            <button type="button" class="chip" data-msg="Please refund ORD-1001">ORD-1001 · auto</button>
+            <button type="button" class="chip" data-msg="Please refund ORD-1002">ORD-1002 · review</button>
+            <button type="button" class="chip" data-msg="Please refund ORD-1003">ORD-1003 · review</button>
+            <button type="button" class="chip" data-msg="Please refund ORD-1004">ORD-1004 · expired</button>
+            <button type="button" class="chip" data-msg="Please refund ORD-1005">ORD-1005 · refunded</button>
+            <button type="button" class="chip" data-msg="Where is my order ORD-1001?">Tracking</button>
+          </div>
+
+          <div class="form-foot">
+            <span class="thread">Thread <code id="threadId">—</code></span>
+            <button class="btn primary" id="sendBtn" type="submit">Send request</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <div>
+            <h2>Agent result</h2>
+            <p>Decision and reply, as the agent produced them.</p>
+          </div>
+          <span class="result-state" id="statusText"></span>
+        </header>
+
+        <div id="resultEmpty" class="empty">
+          <div class="empty-mark" aria-hidden="true">✦</div>
+          <p>No request yet. Results will appear here.</p>
+        </div>
+
+        <div id="result" class="hidden">
+          <span id="decisionBadge" class="badge">—</span>
+          <div id="responseText" class="letter"></div>
+
+          <div id="reviewPanel" class="review hidden">
+            <div>
+              <h3>Human approval required</h3>
+              <p id="reviewInfo"></p>
+            </div>
+            <div class="actions">
+              <button class="btn success" id="approveBtn" type="button">Approve refund</button>
+              <button class="btn danger" id="rejectBtn" type="button">Reject</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <header class="card-head">
+          <div>
+            <h2>Orders <span class="count" id="orderCount"></span></h2>
+            <p>Click any row to draft a refund request for it.</p>
+          </div>
+          <button class="btn ghost" id="refreshOrders" type="button">Refresh</button>
+        </header>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Product</th>
+                <th class="num">Amount</th>
+                <th>Delivered</th>
+                <th>Status</th>
+                <th>Refund</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <header class="card-head">
+          <div>
+            <h2>Activity</h2>
+            <p>Session log of requests and reviewer decisions.</p>
+          </div>
+          <button class="btn ghost" id="clearLog" type="button">Clear</button>
+        </header>
+        <ul class="log" id="log"></ul>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
