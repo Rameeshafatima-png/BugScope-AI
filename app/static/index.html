@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0c1725">
+  <title>BugScope AI | Bug Report Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css?v=5">
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">
+      <span class="brand-mark">⌕</span>
+      <span>BugScope <b>AI</b></span>
+    </a>
+    <nav class="nav-actions">
+      <span class="status"><i></i> AI debugging workspace</span>
+      <a href="/docs" target="_blank" rel="noopener">API Docs ↗</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀</button>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="eyebrow">✦ GEMINI + LANGGRAPH · BUG INTELLIGENCE</div>
+      <div class="hero-row">
+        <div>
+          <h1>Find the bug.<br><span>Understand the cause.</span></h1>
+          <p>Turn plain-language bug descriptions into structured reports with severity, possible root causes, and recommended fixes.</p>
+        </div>
+        <aside class="hero-stamp">
+          <strong>04</strong>
+          <span>Analysis stages</span>
+          <hr>
+          <small>One structured report</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="panel input-panel">
+        <div class="panel-heading">
+          <div class="panel-icon">01</div>
+          <div>
+            <span class="kicker">INPUT · BUG DETAILS</span>
+            <h2>Bug description</h2>
+            <p>Describe what happened and what you expected.</p>
+          </div>
+        </div>
+
+        <label for="bugDescription">Describe the issue</label>
+        <textarea id="bugDescription" maxlength="12000"
+          placeholder="Example: Clicking Reset Password keeps loading and no email arrives. This happens in Chrome on Windows..."
+          spellcheck="true"></textarea>
+
+        <div class="meta-row">
+          <span>Minimum 10 characters</span>
+          <span id="charCount">0 / 12,000</span>
+        </div>
+
+        <div class="samples">
+          <div class="samples-heading">QUICK START <span></span></div>
+          <div class="chips">
+            <button class="chip" type="button" data-sample="Users are logged out immediately after signing in. The session cookie does not persist in Safari. Users expect to stay signed in until they log out.">Authentication</button>
+            <button class="chip" type="button" data-sample="The checkout page charges the customer twice when Place Order is clicked more than once during a slow response. The confirmation page keeps loading.">Checkout</button>
+            <button class="chip" type="button" data-sample="Uploading a profile picture larger than 2 MB freezes the settings page with no validation message. The app should reject oversized files and show the size limit.">File upload</button>
+          </div>
+        </div>
+
+        <div id="errorBox" class="alert" role="alert" hidden></div>
+
+        <button id="analyzeBtn" class="primary-button" type="button">
+          <span class="btn-label">✦ &nbsp; Analyze bug &nbsp; →</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+        <p class="fine-print">AI findings are hypotheses. Verify them against your code and logs.</p>
+      </section>
+
+      <section class="panel report-panel" id="resultPanel">
+        <div class="panel-heading report-heading">
+          <div class="panel-icon">02</div>
+          <div class="report-heading-copy">
+            <span class="kicker">OUTPUT · ANALYSIS</span>
+            <h2>Analysis report</h2>
+            <p>Your structured debugging brief.</p>
+          </div>
+          <button id="copyBtn" class="quiet-button" type="button" disabled>Copy report</button>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">⌕</div>
+          <h3>Ready when you are</h3>
+          <p>Submit a bug to generate severity, root-cause hypotheses, and recommended fixes.</p>
+          <div class="empty-meta">Gemini-powered analysis · Four LangGraph stages</div>
+        </div>
+
+        <div id="loadingState" class="loading-state" hidden>
+          <div class="loading-orbit"></div>
+          <h3>Building your report</h3>
+          <p id="loadingMessage">Analyzing the reported issue...</p>
+          <div class="progress-track"><span></span></div>
+          <div class="steps">
+            <span class="step">01 Analyze</span>
+            <span class="step">02 Severity</span>
+            <span class="step">03 Root cause</span>
+            <span class="step">04 Format</span>
+          </div>
+          <small>Overall progress only; individual node completion is not reported by this UI.</small>
+        </div>
+
+        <div id="reportContent" class="report-content" hidden></div>
+      </section>
+    </section>
+
+    <section class="workflow-strip">
+      <strong>Workflow</strong>
+      <span>01 Bug analysis</span><i>→</i>
+      <span>02 Severity detection</span><i>→</i>
+      <span>03 Root cause</span><i>→</i>
+      <span>04 Format report</span>
+    </section>
+
+    <footer class="footer">
+      <span>BUGSCOPE <b>AI</b></span>
+      <span>Built for clearer bugs and faster fixes.</span>
+      <span>GEMINI · LANGGRAPH</span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js?v=5" defer></script>
+</body>
+</html>
